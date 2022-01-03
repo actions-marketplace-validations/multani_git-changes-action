@@ -1,0 +1,19 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - "*"
+
+    pull_requests:
+      - "*"
+
+jobs:
+  success:
+    name: Success
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Check Git changes
+        uses: ./

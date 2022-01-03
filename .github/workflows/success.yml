@@ -1,0 +1,39 @@
+name: Failures
+# This workflow is supposed to fail every time.
+
+on:
+  push:
+    branches:
+      - "*"
+
+    pull_requests:
+      - "*"
+
+jobs:
+  fail-untracked:
+    name: Untracked files
+    # This job is supposed to fail, but don't fail the whole workflow
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Make changes
+        run: date > some-file
+
+      - name: Check Git changes
+        uses: ./
+
+  fail-diff:
+    name: Diff files
+    # This job is supposed to fail, but don't fail the whole workflow
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Make changes
+        run: date >> README.md
+
+      - name: Check Git changes
+        uses: ./
