@@ -2,6 +2,10 @@ name: Git changes verifier
 description: |
   Display changes from Git and fail the build if there are any changes pending.
 
+branding:
+  icon: alert-triangle
+  color: red
+
 runs:
   using: composite
   steps:
